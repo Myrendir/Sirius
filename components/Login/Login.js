@@ -130,9 +130,6 @@ class Login extends React.Component {
                 <Grid container className={classes.genericContainer} style={{flexDirection: 'column'}}>
                   <Link href={'/forgotPassword'}><a color="primary" style={{textDecoration: 'none', color: '#2FBCD3'}}>Mot
                     de passe oublié ?</a></Link>
-                  <a color="primary" onClick={callRegister}
-                     style={{textDecoration: 'none', color: '#2FBCD3', cursor: 'pointer'}}>Pas encore inscrit ?
-                    Inscrivez-vous !</a>
                 </Grid>
               </Grid>
             </Grid>
