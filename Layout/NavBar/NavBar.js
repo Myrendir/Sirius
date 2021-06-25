@@ -15,7 +15,6 @@ class NavBar extends React.Component {
       <Grid>
         <h2 className={classes.title}>Je suis une Navbar</h2>
       </Grid>
-
     )
   }
 }

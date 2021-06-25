@@ -20,7 +20,6 @@ const getAuthToken = () => {
   if (!token) {
     return null
   }
-
   return jwt.decode(token.split(' ')[1])
 }
 
