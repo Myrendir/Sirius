@@ -17,6 +17,7 @@ class ContactBook extends React.Component {
         </Helmet>
         <Grid>
           <NavBar/>
+          <br/><br/><br/><br/>
           <ContactTable/>
         </Grid>
       </Grid>
