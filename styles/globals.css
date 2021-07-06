@@ -86,7 +86,8 @@ h1 {
 }
 
 .block-home a,
-.single-news a {
+.single-news a,
+.profil a{
     background-color: #03989E;
     border-radius: 50px;
     padding: 10px;
@@ -106,7 +107,8 @@ h1 {
 
 .news,
 .apero,
-.idees {
+.idees,
+.profil {
     height: 100vh;
     width: 100%;
     position: relative;
@@ -237,4 +239,53 @@ footer h1 {
     color: #fff;
 }
 
-/**************************************************Login***************************************************************/
+/**************************************************Profil***************************************************************/
+
+.profil {
+    text-align: center;
+}
+
+.header-profil {
+    width: 100%;
+    height: 33.33333vh;
+    background: linear-gradient(0deg, rgba(3, 152, 158, 1) 0%, rgba(255, 255, 255, 0) 75%),
+    url('../../Sirius-Yikes/public/bg-profil.jpg');
+    background-size: cover;
+    position: relative;
+}
+
+.header-profil h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+}
+
+.around-img {
+    z-index: 100;
+    background-color: #fff;
+    clip-path: circle(39% at 50% 50%);
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: -100px;
+}
+
+.card-profil {
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px 10px 30px 10px;
+}
+
+.profil img {
+    z-index: 150;
+    width: 200px;
+    margin-top: 33.33333333333px;
+    clip-path: circle(37% at 50% 50%);
+}

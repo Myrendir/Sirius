@@ -2,8 +2,6 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import Grid from '@material-ui/core/Grid';
 import Login from '../components/Login/Login'
-import NavBar from "../Layout/NavBar/NavBar";
-import Home from "./index";
 
 class login extends React.Component {
     constructor(props) {
@@ -18,9 +16,9 @@ class login extends React.Component {
                 </Helmet>
                 <Login/>
                 <Grid>
+                </Grid>
             </Grid>
-    </Grid>
-    )
+        )
     }
 }
 
