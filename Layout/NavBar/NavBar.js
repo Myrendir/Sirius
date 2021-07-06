@@ -12,8 +12,15 @@ class NavBar extends React.Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid>
-        <h2 className={classes.title}>Je suis une Navbar</h2>
+      <Grid className="navbar">
+        {/*<h2 className={classes.title}>Je suis une Navbar</h2>*/}
+        <ul>
+          <li><a className="nav-a" href="">Profil</a></li>
+          <li><a className="nav-a" href="#accueil">Accueil</a></li>
+          <li><a className="nav-a" href="#actualites">Actualités</a></li>
+          <li><a className="nav-a" href="#apero">Apéro !</a></li>
+          <li><a className="nav-a" href="#idees">Idées</a></li>
+        </ul>
       </Grid>
 
     )

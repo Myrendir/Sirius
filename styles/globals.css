@@ -1,16 +1,240 @@
+/*
+ * Main color = #03989E
+ * h3 = color: #666;
+ */
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    scroll-behavior: smooth;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.align-ctr {
+    text-align: center;
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+
+.navbar ul {
+    text-align: right;
+    padding-right: 10%;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.nav-green {
+    color: #03989E;
+}
+
+.home {
+    height: 100vh;
+    background: rgb(3, 152, 158);
+    background: linear-gradient(180deg, rgba(3, 152, 158, 1) 0%, rgba(255, 255, 255, 0) 50%),
+    url('../public/background-home.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.block-home {
+    width: 70%;
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+.block-home p {
+    font-size: 1.2rem;
+}
+
+.block-home a,
+.single-news a {
+    background-color: #03989E;
+    border-radius: 50px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.section h1 {
+    text-align: center;
+}
+
+.single-news {
+    display: inline-block;
+    width: 33.33333333%;
+    padding: 20px;
+}
+
+.news,
+.apero,
+.idees {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+@media screen and (max-width: 768px) {
+    .news,
+    .apero,
+    .idees {
+        height: 70vh;
+        width: 100%;
+        position: relative;
+    }
+}
+
+.centered-vh {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.single-news img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.single-news h3 {
+    color: #666;
+}
+
+.single-news a {
+    font-size: 1rem;
+}
+
+.apero {
+    background-color: #f5f5f5;
+}
+
+.bgd-apero {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+}
+
+.card-apero {
+    background: linear-gradient(0deg, rgba(3, 152, 158, .5), rgba(3, 152, 158, .5)), url('../public/urgence-apero.jpg'), center;
+    background-size: cover;
+    width: 50%;
+    height: 300px;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+}
+
+.card-apero-2 {
+    z-index: 100;
+    background-color: white;
+    width: 50%;
+    height: 300px;
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.apero a {
+    width: 100%;
+    padding: 20px;
+    background-color: #03989E;
+    border-radius: 50px;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.idees {
+    background: linear-gradient(0deg, rgba(3, 152, 158, 1) 0%, rgba(255, 255, 255, 0) 50%),
+    url('../public/form-bg.jpg');
+    background-size: cover;
+}
+
+.form {
+    background-color: #fff;
+    text-align: center;
+    padding: 50px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+form textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #03989E;
+}
+
+footer {
+    height: 10vh;
+    background-color: #03989E;
+    text-align: center;
+    line-height: 10vh;
+}
+
+footer h1 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/**************************************************Login***************************************************************/

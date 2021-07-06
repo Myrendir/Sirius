@@ -8,10 +8,12 @@
     "start": "NODE_ENV=production & node server/server.js"
   },
   "dependencies": {
+    "@material-ui/data-grid": "^4.0.0-alpha.32",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "console-stamp": "^3.0.2",
+    "jquery": "^3.6.0",
     "jss": "^10.6.0",
-    "next": "10.2.3",
+    "next": "^10.2.3",
     "react": "17.0.2",
     "react-cookies": "^0.1.1",
     "react-dom": "17.0.2",

@@ -1,5 +1,5 @@
 export default theme => ({
-  title: {
-    color: 'blue'
-  }
+    title: {
+        color: 'blue'
+    }
 })

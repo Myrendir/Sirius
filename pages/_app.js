@@ -16,7 +16,7 @@ class MyApp extends App {
   render() {
     const {Component, pageProps} = this.props;
     return (
-      <Container>
+      <>
         <Head>
           <title>Sirius</title>
         </Head>
@@ -37,7 +37,7 @@ class MyApp extends App {
             <Component pageContext={this.pageContext} {...pageProps} />
           </MuiThemeProvider>
         </JssProvider>
-      </Container>
+      </>
     )
   }
 
