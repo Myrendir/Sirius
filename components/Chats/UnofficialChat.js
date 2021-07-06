@@ -9,7 +9,8 @@ const {setAuthToken, setAxiosAuthentication} = require('../../utils/authenticati
 
 var refreshChat = setInterval(function() {
     let lastMessage = messages[messages.length - 1];
-    axios.post('localhost:8000/api/chat/unofficial/refresh', lastMessage.sendAt)
+    let objectToSend = {Date: lastMessage.sendAt};
+    axios.post('localhost:8000/api/chat/unofficial/refresh', JSON.stringify(objectToSend))
         .then(res => {this.setState({ messages: messages.concat(res)})})
         .catch(err => console.log(err))
 }, 15000);
@@ -40,7 +41,7 @@ class UnofficialChat extends React.Component {
         const messageToSend = {
             content: this.state.messageContent
         }
-        axios.post('localhost:8000/api/chat/unofficial/send', messageToSend)
+        axios.post('localhost:8000/api/chat/unofficial/send', JSON.stringify(messageToSend))
         .then(res => {
             
         })
@@ -51,14 +52,12 @@ class UnofficialChat extends React.Component {
         });
     }
 
-    
+    onChange = e => {
+        this.setState({messageContent: e.target.value});
+    }
 
     render() {
         const {messageContent} = this.state;
-
-        onChange = e => {
-            setMessageContent(e.target.value);
-        }
 
         return (
             <Grid style={{width: '100%'}}>
