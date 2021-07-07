@@ -13,6 +13,7 @@ import Card from "@material-ui/core/Card";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
 
 const checkPasswordFormat = pass => (pass.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})'));
 
@@ -44,6 +45,7 @@ class Register extends React.Component {
       password: '',
       password2: '',
       token: '',
+      companyActivity: '',
       status1: {error: '', check: false},
       status2: {error: '', check: false},
       showPassword: false
@@ -131,7 +133,7 @@ class Register extends React.Component {
 
   render() {
     const {classes} = this.props;
-    const {showPassword} = this.state;
+    const {showPassword, companyActivity} = this.state;
     return (
       <Grid>
 
@@ -172,9 +174,9 @@ class Register extends React.Component {
             placeholder="Company"
             onChange={this.onChangeCompany}
           />
-
+          <InputLabel id="demo-simple-select-label">Domaine d'activité</InputLabel>
           <Select
-            value="Domaine d'activité"
+            value={companyActivity}
             onChange={this.handleChange}
           >
             <MenuItem value={'Architecture'}>Architecture</MenuItem>
@@ -200,7 +202,6 @@ class Register extends React.Component {
             id="standard-with-placeholder"
             label="Mot de passe"
             placeholder="Mot de passe"
-            style={{width: '100%'}}
             type="password"
             name="password"
             value={this.state.password}
@@ -215,7 +216,6 @@ class Register extends React.Component {
             id="standard-with-placeholder"
             label="Répéter le mot de passe"
             placeholder="Mot de passe"
-            style={{width: '100%'}}
             type={showPassword ? "text" : "password"}
             name="password2"
             value={this.state.password2}
