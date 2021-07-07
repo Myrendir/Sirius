@@ -119,9 +119,9 @@ class ContactTable extends React.Component {
   }
 
   componentDidMount() {
-    // setAxiosAuthentication()
+    setAxiosAuthentication();
     const token = localStorage.getItem('token')
-    axios.get('http://localhost:8000/api/user/list', {headers: {"Authorization" : `Bearer ${token}`}})
+    axios.get('http://localhost:8000/api/user/list')
       .then(res => {
           console.log(res);
           res.data.forEach(function (user) {

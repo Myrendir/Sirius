@@ -22,6 +22,7 @@ class Home extends React.Component {
     const handleClose = () => {
       this.state({open: false});
     }
+    
     return (
       <Dialog onClose={handleClose} open={openDialog}>
         <DialogTitle onClose={() => this.setState({open: false})}>
@@ -30,7 +31,6 @@ class Home extends React.Component {
           <UrgenceApero/>
           <Button onClick={handleClose}>Fermer</Button>
         </DialogContent>
-
       </Dialog>
     )
   }
@@ -102,7 +102,7 @@ class Home extends React.Component {
                     quisquam sit totam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                     assumenda commodi, dignissimos doloremque ducimus eveniet explicabo fugit, ipsa laborum maiores
                     nam natus provident quasi rerum sapiente soluta temporibus tenetur.</p><br/>
-                  <div className="align-ctr btn-apero"><a onClick={this.dialogUrgence()}>Urgence Apéro !</a></div>
+                  <div className="align-ctr btn-apero"><a onClick={() => this.dialogUrgence()}>Urgence Apéro !</a></div>
                 </div>
               </div>
             </div>

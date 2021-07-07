@@ -3,12 +3,13 @@ import cookie from 'react-cookies'
 
 const jwt = require('jsonwebtoken');
 
-const setAuthToken = (token) => {
+const setAuthToken = (token, userEmail) => {
   if (typeof localStorage == 'undefined') {
     console.error('Can not set auth token, undefined localStorage')
     return null
   }
-  localStorage.setItem('token', token)
+  localStorage.setItem('token', token);
+  localStorage.setItem('userEmail', userEmail);
 }
 
 const getAuthToken = () => {

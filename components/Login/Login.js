@@ -38,7 +38,7 @@ class Login extends React.Component {
     axios.post('http://localhost:8000/api/login_check', user)
       .then(res => {
         console.log(res);
-        setAuthToken(res.data.token);
+        setAuthToken(res.data.token, this.state.email);
         setAxiosAuthentication();
       })
       .catch(err => {
