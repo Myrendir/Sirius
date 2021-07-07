@@ -19,6 +19,7 @@ class MyApp extends App {
       <>
         <Head>
           <title>Sirius</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
         </Head>
 
         <JssProvider

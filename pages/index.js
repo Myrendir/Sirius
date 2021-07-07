@@ -35,7 +35,7 @@ class Home extends React.Component {
                                 <h3>Mardi 1 juin</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
                                     ducimus eos incidunt ipsam laborum nam natus necessitatibus nulla officia perferendis quaerat
-                                    quisquam sit totam?</p>
+                                    quisquam sit totam?</p> <br/>
                                 <a href="">Voir le lien</a>
                             </div>
 
@@ -45,7 +45,7 @@ class Home extends React.Component {
                                 <h3>Mardi 1 juin</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
                                     ducimus eos incidunt ipsam laborum nam natus necessitatibus nulla officia perferendis quaerat
-                                    quisquam sit totam?</p>
+                                    quisquam sit totam?</p> <br/>
                                 <a href="">Voir le lien</a>
                             </div>
                             <div className="single-news">
@@ -54,7 +54,7 @@ class Home extends React.Component {
                                 <h3>Mardi 1 juin</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
                                     ducimus eos incidunt ipsam laborum nam natus necessitatibus nulla officia perferendis quaerat
-                                    quisquam sit totam?</p>
+                                    quisquam sit totam?</p> <br/>
                                 <a href="">Voir le lien</a>
                             </div>
                         </div>
