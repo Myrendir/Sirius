@@ -19,7 +19,7 @@ class ContactBook extends React.Component {
                     <NavBar/>
                     <div className="section contactbook">
                         <div className="centered-vh">
-                            <h1>ContactBook</h1>
+                            <h1>Annuaire</h1>
                             <ContactTable style={"transform=scale(.7"}/>
                         </div>
                     </div>

@@ -30,7 +30,7 @@ class NavBar extends React.Component {
             <li><a className="nav-a" href="../#actualites">Actualités</a></li>
             <li><a className="nav-a" href="../#apero">Apéro !</a></li>
             <li><a className="nav-a" href="../#idees">Idées</a></li>
-            <li><a className="nav-a" href="/contactbook">ContactBook</a></li>
+            <li><a className="nav-a" href="/contactbook">Annuaire</a></li>
             <li><a className="nav-a" href="/login">Se connecter</a></li>
           </ul>
         </nav>
