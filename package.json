@@ -13,6 +13,7 @@
     "console-stamp": "^3.0.2",
     "jquery": "^3.6.0",
     "jss": "^10.6.0",
+    "jwt-decode": "^3.1.2",
     "next": "^10.2.3",
     "react": "17.0.2",
     "react-cookies": "^0.1.1",

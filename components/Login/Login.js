@@ -1,5 +1,6 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
+import jwtDecode from 'jwt-decode';
 import styles from '../../styles/components/Login/Login';
 import axios from 'axios';
 import {snackBarError} from "../../utils/notifications";
@@ -38,6 +39,8 @@ class Login extends React.Component {
     axios.post('http://localhost:8000/api/login_check', user)
       .then(res => {
         console.log(res);
+        let decoded = jwtDecode(res.data.token);
+        console.log(decoded);
         setAuthToken(res.data.token, this.state.email);
         setAxiosAuthentication();
       })
