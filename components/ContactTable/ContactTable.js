@@ -120,7 +120,7 @@ class ContactTable extends React.Component {
 
   componentDidMount() {
     setAxiosAuthentication()
-    axios.get('localhost:8000/api/user/list')
+    axios.get('http://localhost:8000/api/user/list')
       .then(res => {
         this.setState({dataGridRows: res});
       })

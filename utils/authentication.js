@@ -3,12 +3,11 @@ import cookie from 'react-cookies'
 
 const jwt = require('jsonwebtoken');
 
-const setAuthToken = () => {
+const setAuthToken = (token) => {
   if (typeof localStorage == 'undefined') {
     console.error('Can not set auth token, undefined localStorage')
     return null
   }
-  const token = cookie.load('token')
   localStorage.setItem('token', token)
 }
 
@@ -32,7 +31,7 @@ const setAxiosAuthentication = () => {
   const token = localStorage.getItem('token')
   if (token) {
     // Apply to every request
-    axios.defaults.headers.common['Authorization'] = token
+    axios.defaults.headers.Authorization = 'Bearer ' + token
   } else {
     // Delete auth header
     delete axios.defaults.headers.common['Authorization']
