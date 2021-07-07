@@ -5,7 +5,7 @@ import styles from '../../styles/components/ContactTable/ContactTable';
 import Grid from "@material-ui/core/Grid";
 import {DataGrid} from "@material-ui/data-grid";
 
-const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication');
+const {setAuthToken, setAxiosAuthentication, getAuthToken} = require('../../utils/authentication');
 
 const fakeRows = [
   {
@@ -101,13 +101,13 @@ const fakeRows = [
 ];
 
 const userEntityColumns = [
-  {field: "firstName", headerName: "Prénom", width: 150},
-  {field: "lastName", headerName: "Nom", width: 150},
-  {field: "email", headerName: "Mail", width: 150},
-  {field: "phoneNumber", headerName: "N° de tél", width: 150},
-  {field: "company", headerName: "Entreprise", width: 150},
-  {field: "companyActivity", headerName: "Secteur d'activité", width: 150},
-  {field: "skills", headerName: "Domaine(s) de compétence", width: 150}
+    {field: "first_name", headerName: "Prénom", width: 150},
+    {field: "last_name", headerName: "Nom", width: 150},
+    {field: "id", headerName: "Mail", width: 150},
+    {field: "phoneNumber", headerName: "N° de tél", width: 150},
+    {field: "company", headerName: "Entreprise", width: 150},
+    {field: "companyActivity", headerName: "Secteur d'activité", width: 150},
+    {field: "skills", headerName: "Domaine(s) de compétence", width: 150}
 ];
 
 class ContactTable extends React.Component {
@@ -119,10 +119,16 @@ class ContactTable extends React.Component {
   }
 
   componentDidMount() {
-    setAxiosAuthentication()
-    axios.get('http://localhost:8000/api/user/list')
+    // setAxiosAuthentication()
+    const token = localStorage.getItem('token')
+    axios.get('http://localhost:8000/api/user/list', {headers: {"Authorization" : `Bearer ${token}`}})
       .then(res => {
-        this.setState({dataGridRows: res});
+          console.log(res);
+          res.data.forEach(function (user) {
+              user.id = user.email;
+              user.companyActivity = user.company_activity.name;
+          });
+        this.setState({dataGridRows: res.data});
       })
       .catch(err => {
         console.log(err);
