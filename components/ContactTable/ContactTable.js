@@ -52,7 +52,7 @@ class ContactTable extends React.Component {
 
     render() {
         return (
-            <Grid style={{width: '100%'}, {height: '660px'}}>
+            <Grid style={{width: '90%' , height: '80vh', backgroundColor:'#fff', margin:'0 auto'}}>
                 <DataGrid rows={fakeRows} columns={userEntityColumns} pageSize={10} />
             </Grid>
         )

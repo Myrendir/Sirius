@@ -17,7 +17,7 @@ class Home extends React.Component {
                 <Grid>
                     <NavBar/>
                     <div className="home" id="accueil">
-                        <div className="block-home">
+                        <div className="wrap block-home">
                             <h1>SIRIUS 1.7.5</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
                                 ducimus eos incidunt ipsam laborum nam natus necessitatibus nulla officia perferendis quaerat
@@ -26,7 +26,7 @@ class Home extends React.Component {
                         </div>
                     </div>
 
-                    <div className="section news" id="actualites">
+                    <div className="wrap section news" id="actualites">
                         <div className="centered-vh">
                             <h1>Actualités</h1>
                             <div className=" single-news">
@@ -63,7 +63,7 @@ class Home extends React.Component {
                     <div className="section apero" id="apero">
                         <div className="centered-vh">
                             <h1>Urgence Apéro !</h1>
-                            <div className="bgd-apero">
+                            <div className="wrap bgd-apero">
                                 <div className="card-apero"/>
                                 <div className="card-apero-2">
                                     <h2>Urgence apéro !</h2>
@@ -78,7 +78,7 @@ class Home extends React.Component {
 
                     <div className="section idees" id="idees">
                         <div className="centered-vh">
-                            <div className="form">
+                            <div className="wrap form">
                                 <h1>La boîte à idées</h1>
                                 <form>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
