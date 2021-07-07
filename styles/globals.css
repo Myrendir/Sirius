@@ -456,8 +456,21 @@ footer h1 {
     .contactbook{
         padding-top: 60px;
     }
+    .avatar {
+        display: none;
+    }
 }
 
 /**********************************************************************************************************************/
 
+.avatar {
+    width: 20%;
+    z-index: 9999999;
+    position: fixed;
+    bottom: -15%;
+    left: 5%;
+}
 
+.avatar svg {
+    width: 100%;
+}
