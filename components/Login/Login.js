@@ -99,7 +99,7 @@ class Login extends React.Component {
                       style={{width: '100%', marginTop: 16, marginBottom: 8}}
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      value={password}
+                      // value={password}
                       onChange={this.onChange}
                       error={errors.password}
                       endAdornment={
