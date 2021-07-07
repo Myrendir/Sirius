@@ -11,6 +11,8 @@ import styles from '../../styles/components/Register/Register';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "@material-ui/core/Card";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const checkPasswordFormat = pass => (pass.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})'));
 
@@ -66,6 +68,41 @@ class Register extends React.Component {
       status2: checkPass2(this.state.password, this.state.password2),
     });
   };
+  onChangeUsername = e => {
+    this.setState({
+      username: e.target.value
+    })
+  }
+  onChangefirstname = e => {
+    this.setState({
+      firstname: e.target.value
+    })
+  }
+  onChangeName = e => {
+    this.setState({
+      name: e.target.value
+    })
+  }
+  onChangeEmail = e => {
+    this.setState({
+      email: e.target.value
+    })
+  }
+  onChangeCompany = e => {
+    this.setState({
+      company: e.target.value
+    })
+  }
+  handleChange = e => {
+    this.setState({
+      companyActivity: e.target.value
+    })
+  }
+  onChangePhone = e => {
+    this.setState({
+      phoneNumber: e.target.value
+    })
+  }
 
   onSubmit = e => {
     e.preventDefault();
@@ -73,7 +110,7 @@ class Register extends React.Component {
       password: this.state.password,
       token: this.state.token,
     };
-    axios.post('')
+    axios.post('http://localhost:8000/api/register')
       .then(res => {
         const user = res.data;
         snackBarSuccess('Informations modifiées avec succès');
@@ -99,9 +136,69 @@ class Register extends React.Component {
       <Grid>
 
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+
           <TextField
             id="standard-with-placeholder"
-            label="Nouveau mot de passe"
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={this.onChangeUsername}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="firstname"
+            placeholder="Prénom"
+            onChange={this.onChangefirstname}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="lastname"
+            placeholder="Nom"
+            onChange={this.onChangeName}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={this.onChangeEmail}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="company"
+            placeholder="Company"
+            onChange={this.onChangeCompany}
+          />
+
+          <Select
+            value="Domaine d'activité"
+            onChange={this.handleChange}
+          >
+            <MenuItem value={'Architecture'}>Architecture</MenuItem>
+            <MenuItem value={'Informatics'}>Informatique</MenuItem>
+            <MenuItem value={'Marketing'}>Marketing</MenuItem>
+          </Select>
+
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="phoneNumber"
+            placeholder="Téléphone"
+            onChange={this.onChangePhone}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            type="text"
+            name="beverage"
+            placeholder="Boisson"
+            onChange={this.onChangePhone}
+          />
+          <TextField
+            id="standard-with-placeholder"
+            label="Mot de passe"
             placeholder="Mot de passe"
             style={{width: '100%'}}
             type="password"
