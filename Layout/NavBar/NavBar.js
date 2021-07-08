@@ -25,6 +25,7 @@ class NavBar extends React.Component {
 
         <nav>
           <ul>
+            <li><a className="nav-a" href="../#accueil">Accueil</a></li>
             <li><a className="nav-a" href="/profil">Profil</a></li>
             <li><a className="nav-a" href="/contactbook">Annuaire</a></li>
             <li><a className="nav-a" href="/login">Se connecter</a></li>
