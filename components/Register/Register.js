@@ -16,6 +16,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 
 const checkPasswordFormat = pass => (pass.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})'));
+const {BASE_URL} = require('../../utils/conf');
 
 const checkPass1 = pass => {
   if (pass === '') {
@@ -112,7 +113,7 @@ class Register extends React.Component {
       password: this.state.password,
       token: this.state.token,
     };
-    axios.post('http://localhost:8000/api/register')
+    axios.post(`${BASE_URL}/api/register`)
       .then(res => {
         const user = res.data;
         snackBarSuccess('Informations modifiées avec succès');
