@@ -12,7 +12,7 @@ const userEntityColumns = [
     {field: "first_name", headerName: "Prénom", width: 150},
     {field: "last_name", headerName: "Nom", width: 150},
     {field: "id", headerName: "Mail", width: 150},
-    {field: "phoneNumber", headerName: "N° de tél", width: 150},
+    {field: "phone_number", headerName: "N° de tél", width: 150},
     {field: "company", headerName: "Entreprise", width: 150},
     {field: "companyActivity", headerName: "Secteur d'activité", width: 150},
     {field: "skills", headerName: "Domaine(s) de compétence", width: 150}
