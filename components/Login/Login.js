@@ -38,10 +38,8 @@ class Login extends React.Component {
 
     axios.post('http://localhost:8000/api/login_check', user)
       .then(res => {
-        console.log(res);
-        let decoded = jwtDecode(res.data.token);
-        console.log(decoded);
-        setAuthToken(res.data.token, this.state.email);
+        let decodedToken = jwtDecode(res.data.token);
+        setAuthToken(res.data.token, this.state.email, decodedToken);
         setAxiosAuthentication();
       })
       .catch(err => {
@@ -141,7 +139,6 @@ class Login extends React.Component {
                 <Grid container className={classes.genericContainer} style={{flexDirection: 'column'}}>
                   <Link href={'/forgotPassword'}><a color="primary" style={{textDecoration: 'none', color: '#2FBCD3'}}>Mot
                     de passe oublié ?</a></Link>
-                  <Link href={'/'}><a color="primary" style={{textDecoration: 'none', color: '#2FBCD3'}}>Revenir à la page d'accueil</a></Link>
                 </Grid>
               </Grid>
             </Grid>
