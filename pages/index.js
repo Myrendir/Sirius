@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginVerification from '../components/Login/LoginVerification';
 import {Helmet} from 'react-helmet';
 import Grid from '@material-ui/core/Grid';
 import NavBar from "../Layout/NavBar/NavBar";
@@ -6,6 +7,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import UrgenceApero from "../components/UrgenceApero/UrgenceApero";
+import UnofficialChat from "../components/Chats/UnofficialChat";
+import OfficialChat from "../components/Chats/OfficialChat";
 import Button from "@material-ui/core/Button";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
@@ -34,6 +37,7 @@ class Home extends React.Component {
     const {open} = this.state;
     return (
       <Grid>
+        {/* <LoginVerification /> */}
         <Helmet>
           <title>Sirius</title>
         </Helmet>
@@ -160,6 +164,8 @@ class Home extends React.Component {
               <h1>Sirius 1.7.5</h1>
             </div>
           </footer>
+          <UnofficialChat />
+          <OfficialChat />
         </Grid>
       </Grid>
     )
