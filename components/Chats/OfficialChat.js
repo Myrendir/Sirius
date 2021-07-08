@@ -4,6 +4,7 @@ import {snackBarError} from "../../utils/notifications";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
+import moment from "moment";
 const {BASE_URL} = require('../../utils/conf');
 
 const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication');
@@ -17,37 +18,46 @@ class OfficialChat extends React.Component {
         }
       }
 
-    refreshChat = setInterval(function() {
-        // const {messages} = this.state;
-        // let lastMessage = messages[messages.length - 1];
-        // let objectToSend = {Date: lastMessage.sendAt};
-        // axios.post(`${BASE_URL}/api/chat/official/refresh`, JSON.stringify(objectToSend))
-        //     .then(res => {this.setState({ messages: messages.concat(res)})})
-        //     .catch(err => console.log(err))
-    }, 15000);
 
     componentDidMount() {
+
+        const refreshChat = () => {
+            const {messages} = this.state;
+            setInterval(() => {
+                let lastMessage = messages[messages.length - 1];
+                let objectToSend = {date: lastMessage.created_at};
+                axios.post(`${BASE_URL}/api/chat/official/lastmessage/since`, objectToSend)
+                  .then(res => {
+                      res.data.forEach((data) => {
+                          if (Object.keys(data).length != 0) {
+                              data.prettyCreatedAt = moment(data.created_at).format('LLL')
+                              this.setState({messages: messages.concat(data)})
+                          }
+                      })
+
+                  })
+                  .catch(err => console.log(err))
+            }, 5000)
+        };
+
         setAxiosAuthentication();
         axios.get(`${BASE_URL}/api/chat/official/lastmessage`)
-        .then(res => {
-            if(res.data.length != 0) {
-                res.data.forEach((message) => {
-                    let date = new Date(message.created_at);
-                    message.prettyCreatedAt =
-                    [date.getMonth()+1,date.getDate(),date.getFullYear()].join('/')+' '+
-                    [date.getHours(),date.getMinutes(),date.getSeconds()].join(':');
-                });
-                this.setState({ messages: res.data.reverse() });
-            }
+          .then(res => {
+              if (res.data.length != 0) {
+                  res.data.forEach((message) => {
+                      message.prettyCreatedAt = moment(message.created_at).format('LLL')
 
-            else
-                this.setState({ messages: [{id: 1, author: null, created_at: null, content: "Aucun message à afficher"}] });
-        })
-        .catch(err => {
-            console.log(err);
-            this.setState({ messages: [] });
-        });
-        this.refreshChat;
+                  });
+                  this.setState({messages: res.data.reverse()});
+                  refreshChat();
+              } else
+                  this.setState({messages: [{id: 1, author: null, created_at: null, content: "Aucun message à afficher"}]});
+          })
+          .catch(err => {
+              console.log(err);
+              this.setState({messages: []});
+          });
+
     }
 
     onSend = e => {
@@ -57,23 +67,19 @@ class OfficialChat extends React.Component {
             author: localStorage.getItem("userEmail")
         }
 
-        axios.post('http://localhost:8000/api/chat/official/send', JSON.stringify(messageToSend))
-        .then(res => {
-            let now = new Date();
-            messageToSend.created_at = now.toISOString().slice(0, -5) + "+02:00";
-            let date = new Date(messageToSend.created_at);
-            messageToSend.prettyCreatedAt =
-                [date.getMonth()+1,date.getDate(),date.getFullYear()].join('/')+' '+
-                [date.getHours(),date.getMinutes(),date.getSeconds()].join(':');
-            messageToSend.id = this.state.messages[this.state.messages.length - 1].id + 1;
-            this.setState({messages: this.state.messages.concat(messageToSend)})
-            this.render();
-        })
-        .catch(err => {
-            console.error(err);
-            if (err.response)
-              snackBarError(err.response.data);
-        });
+        axios.post(`${BASE_URL}/api/chat/unofficial/send`, JSON.stringify(messageToSend))
+          .then(res => {
+              messageToSend.prettyCreatedAt = moment(messageToSend.created_at).format('LLL')
+
+              messageToSend.id = this.state.messages[this.state.messages.length - 1].id + 1;
+              this.setState({messages: this.state.messages.concat(messageToSend)})
+              this.render();
+          })
+          .catch(err => {
+              console.error(err);
+              if (err.response)
+                  snackBarError(err.response.data);
+          });
     }
 
     onChange = e => {
@@ -84,27 +90,27 @@ class OfficialChat extends React.Component {
         const {messageContent, messages} = this.state;
 
         return (
-            <Grid style={{width: '100%'}}>
-                <div id="messagesSection">
-                    {messages?.map(message => (
-                        <div id="messageDiv" key={message.id}>
-                            <p>
-                                <span>{message.author}</span>
-                                <span>{message.content}</span>
-                                <span>{message.prettyCreatedAt}</span>
-                            </p>
+          <Grid style={{width: '100%'}}>
+              <div id="messagesSection">
+                  {messages?.map(message => (
+                    <div id="messageDiv" key={message.id}>
+                        <p>
+                            <span>{message.author}</span>
+                            <span>{message.content}</span>
+                            <span>{message.prettyCreatedAt}</span>
+                        </p>
 
-                        </div>
-                    ))}
-                </div>
-                <div id="sendMessageSection">
-                    <Input placeholder="Votre message..." value={messageContent} onChange={this.onChange} />
-                    <Button onClick={this.onSend} variant="contained" color="primary"
+                    </div>
+                  ))}
+              </div>
+              <div id="sendMessageSection">
+                  <Input placeholder="Votre message..." value={messageContent} onChange={this.onChange}/>
+                  <Button onClick={this.onSend} variant="contained" color="primary"
                           style={{width: '100%', color: 'white'}}>
-                    Envoyer
+                      Envoyer
                   </Button>
-                </div>
-            </Grid>
+              </div>
+          </Grid>
         )
     }
 }
