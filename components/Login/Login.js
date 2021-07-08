@@ -13,8 +13,9 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-
-const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication')
+import * as Router from "next";
+const {BASE_URL} = require('../../utils/conf');
+const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication');
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class Login extends React.Component {
   }
 
   onSubmit = e => {
+    console.log(`${BASE_URL}/api/login_check`);
+
     e.preventDefault();
     const user = {
       username: this.state.email,
@@ -36,11 +39,12 @@ class Login extends React.Component {
 
     console.log(user);
 
-    axios.post('http://localhost:8000/api/login_check', user)
+    axios.post(`${BASE_URL}/api/login_check`, user)
       .then(res => {
         let decodedToken = jwtDecode(res.data.token);
         setAuthToken(res.data.token, this.state.email, decodedToken);
         setAxiosAuthentication();
+        Router.push('/')
       })
       .catch(err => {
         console.error(err);

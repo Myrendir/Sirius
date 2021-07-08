@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import {DataGrid} from "@material-ui/data-grid";
 
 const {setAuthToken, setAxiosAuthentication, getAuthToken} = require('../../utils/authentication');
+const {BASE_URL} = require('../../utils/conf');
 
 const fakeRows = [
   {
@@ -121,7 +122,7 @@ class ContactTable extends React.Component {
   componentDidMount() {
     setAxiosAuthentication();
     const token = localStorage.getItem('token')
-    axios.get('http://localhost:8000/api/user/list')
+    axios.get(`${BASE_URL}/api/user/list`)
       .then(res => {
           console.log(res);
           res.data.forEach(function (user) {
@@ -137,9 +138,10 @@ class ContactTable extends React.Component {
   }
 
     render() {
+    const {dataGridRows} = this.state;
         return (
             <Grid style={{width: '95%' , height: '80vh', backgroundColor:'#fff', margin:'0 auto'}}>
-                <DataGrid rows={fakeRows} columns={userEntityColumns} pageSize={10} />
+                <DataGrid rows={dataGridRows} columns={userEntityColumns} pageSize={10} />
             </Grid>
         )
     }

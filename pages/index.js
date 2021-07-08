@@ -7,36 +7,31 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import UrgenceApero from "../components/UrgenceApero/UrgenceApero";
 import Button from "@material-ui/core/Button";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
 class Home extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      openDialog: false
+      open: false
     }
   }
 
+  handleClickOpen = () => {
+    this.setState({open: true})
+  };
 
-  dialogUrgence = () => {
-    const {openDialog} = this.state;
-    const handleClose = () => {
-      this.state({open: false});
-    }
-    
-    return (
-      <Dialog onClose={handleClose} open={openDialog}>
-        <DialogTitle onClose={() => this.setState({open: false})}>
-        </DialogTitle>
-        <DialogContent>
-          <UrgenceApero/>
-          <Button onClick={handleClose}>Fermer</Button>
-        </DialogContent>
-      </Dialog>
-    )
-  }
+
+  handleClose = () => {
+    this.setState({open: false})
+  };
+
 
   render() {
+    const {open} = this.state;
     return (
       <Grid>
         <Helmet>
@@ -47,10 +42,14 @@ class Home extends React.Component {
           <div className="home" id="accueil">
             <div className="block-home">
               <h1>SIRIUS 1.7.5</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A blanditiis commodi debitis deserunt,
-                ducimus eos incidunt ipsam laborum nam natus necessitatibus nulla officia perferendis quaerat
-                quisquam sit totam? Mollitia, pariatur!</p>
-              <div className="align-ctr"><a href="">C'est parti !</a></div>
+              <p>Sirius est une plateforme qui a pour objectif d'être votre happiness officer en ligne.
+              Vous pouvez accéder aux dernières publications d'Orion que ce soit sous forme de posts ou par messages dans
+              les chats qui sont mis à votre disposition.
+              Vous pouvez également consulter l'annuaire des entreprises partenaires pour trouver un contact ou encore
+              déposer une ou plusieurs idées dans la boite à idées.
+              Enfin, si vous souhaitez retrouver vos collègues ou des membres d'autres entreprises présentes au sein des locaux d'Orion,
+              vous pouvez déclencher l'alerte apéro pour les inviter.</p>
+              <div className="align-ctr"><a href="../#actualites">C'est parti !</a></div>
             </div>
           </div>
 
@@ -88,6 +87,7 @@ class Home extends React.Component {
                   quisquam sit totam?</p>
                 <a href="">Voir le lien</a>
               </div>
+              <div className="arrow"><a href="#apero">Apéro &#9660;</a></div>
             </div>
           </div>
 
@@ -103,9 +103,37 @@ class Home extends React.Component {
                     quisquam sit totam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                     assumenda commodi, dignissimos doloremque ducimus eveniet explicabo fugit, ipsa laborum maiores
                     nam natus provident quasi rerum sapiente soluta temporibus tenetur.</p><br/>
-                  <div className="align-ctr btn-apero"><a onClick={() => this.dialogUrgence()}>Urgence Apéro !</a></div>
+
+                  <div className="align-ctr btn-apero">
+                    <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Urgence Apéro</Button>
+                    <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                      <DialogTitle id="form-dialog-title">Alerte apéro  </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                          Lorem blabla blabla boir alcool
+                        </DialogContentText>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="comment"
+                          label="Commentaire"
+                          type="text"
+                          fullWidth
+                        />
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                          Annuler
+                        </Button>
+                        <Button onClick={this.handleClose} color="primary">
+                          M'inscrire
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
                 </div>
               </div>
+              <div className="arrow"><a href="#idees">Boîte à idées &#9660;</a></div>
             </div>
           </div>
 
