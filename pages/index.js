@@ -7,35 +7,28 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import UrgenceApero from "../components/UrgenceApero/UrgenceApero";
 import Button from "@material-ui/core/Button";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openDialog: false
+      open: false
     }
   }
 
+  handleClickOpen = () => {
+    this.setState({open: true})
+  };
 
-  dialogUrgence = () => {
-    const {openDialog} = this.state;
-    const handleClose = () => {
-      this.state({open: false});
-    }
-    return (
-      <Dialog onClose={handleClose} open={openDialog}>
-        <DialogTitle onClose={() => this.setState({open: false})}>
-        </DialogTitle>
-        <DialogContent>
-          <UrgenceApero/>
-          <Button onClick={handleClose}>Fermer</Button>
-        </DialogContent>
-
-      </Dialog>
-    )
-  }
+  handleClose = () => {
+    this.setState({open: false})
+  };
 
   render() {
+    const {open} = this.state;
     return (
       <Grid>
         <Helmet>
@@ -102,7 +95,33 @@ class Home extends React.Component {
                     quisquam sit totam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                     assumenda commodi, dignissimos doloremque ducimus eveniet explicabo fugit, ipsa laborum maiores
                     nam natus provident quasi rerum sapiente soluta temporibus tenetur.</p><br/>
-                  <div className="align-ctr btn-apero"><a onClick={this.dialogUrgence()}>Urgence Apéro !</a></div>
+                  <div className="align-ctr btn-apero">
+                    <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Urgence Apéro</Button>
+                    <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                      <DialogTitle id="form-dialog-title">Alerte apéro  </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>
+                          Lorem blabla blabla boir alcool
+                        </DialogContentText>
+                        <TextField
+                          autoFocus
+                          margin="dense"
+                          id="comment"
+                          label="Commentaire"
+                          type="text"
+                          fullWidth
+                        />
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">
+                          Annuler
+                        </Button>
+                        <Button onClick={this.handleClose} color="primary">
+                          M'inscrire
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
                 </div>
               </div>
             </div>

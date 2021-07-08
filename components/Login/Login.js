@@ -12,6 +12,7 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
+import * as Router from "next";
 
 const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication')
 
@@ -40,6 +41,7 @@ class Login extends React.Component {
         console.log(res);
         setAuthToken(res.data.token);
         setAxiosAuthentication();
+        Router.push('/')
       })
       .catch(err => {
         console.error(err);
