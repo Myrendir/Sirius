@@ -9,20 +9,25 @@ class contactBook extends React.Component {
     super(props);
   }
 
-  render() {
-    return (
-      <Grid>
-        <Helmet>
-          <title>Annuaire</title>
-        </Helmet>
-        <Grid>
-          <NavBar/>
-          <br/><br/><br/><br/>
-          <ContactTable/>
-        </Grid>
-      </Grid>
-    )
-  }
+
+    render() {
+        return (
+            <Grid>
+                <Helmet>
+                    <title>Annuaire</title>
+                </Helmet>
+                <Grid>
+                    <NavBar/>
+                    <div className="section contactbook">
+                        <div className="centered-vh">
+                            <h1>Annuaire</h1>
+                            <ContactTable style={"transform=scale(.7"}/>
+                        </div>
+                    </div>
+                </Grid>
+            </Grid>
+        )
+    }
 }
 
 export default (contactBook)

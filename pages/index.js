@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 
 class Home extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,9 +24,11 @@ class Home extends React.Component {
     this.setState({open: true})
   };
 
+
   handleClose = () => {
     this.setState({open: false})
   };
+
 
   render() {
     const {open} = this.state;
@@ -95,6 +98,7 @@ class Home extends React.Component {
                     quisquam sit totam? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                     assumenda commodi, dignissimos doloremque ducimus eveniet explicabo fugit, ipsa laborum maiores
                     nam natus provident quasi rerum sapiente soluta temporibus tenetur.</p><br/>
+
                   <div className="align-ctr btn-apero">
                     <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Urgence Apéro</Button>
                     <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">

@@ -119,9 +119,9 @@ class ContactTable extends React.Component {
   }
 
   componentDidMount() {
-    // setAxiosAuthentication()
+    setAxiosAuthentication();
     const token = localStorage.getItem('token')
-    axios.get('http://localhost:8000/api/user/list', {headers: {"Authorization" : `Bearer ${token}`}})
+    axios.get('http://localhost:8000/api/user/list')
       .then(res => {
           console.log(res);
           res.data.forEach(function (user) {
@@ -136,14 +136,13 @@ class ContactTable extends React.Component {
       });
   }
 
-  render() {
-    const {dataGridRows} = this.state;
-    return (
-      <Grid style={{width: '100%', height: '660px'}}>
-        <DataGrid rows={dataGridRows} columns={userEntityColumns} pageSize={10}/>
-      </Grid>
-    )
-  }
+    render() {
+        return (
+            <Grid style={{width: '95%' , height: '80vh', backgroundColor:'#fff', margin:'0 auto'}}>
+                <DataGrid rows={fakeRows} columns={userEntityColumns} pageSize={10} />
+            </Grid>
+        )
+    }
 }
 
-export default withStyles(styles)(ContactTable)
+export default ContactTable

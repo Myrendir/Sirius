@@ -1,5 +1,6 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
+import jwtDecode from 'jwt-decode';
 import styles from '../../styles/components/Login/Login';
 import axios from 'axios';
 import {snackBarError} from "../../utils/notifications";
@@ -39,7 +40,9 @@ class Login extends React.Component {
     axios.post('http://localhost:8000/api/login_check', user)
       .then(res => {
         console.log(res);
-        setAuthToken(res.data.token);
+        let decoded = jwtDecode(res.data.token);
+        console.log(decoded);
+        setAuthToken(res.data.token, this.state.email);
         setAxiosAuthentication();
         Router.push('/')
       })
@@ -140,6 +143,7 @@ class Login extends React.Component {
                 <Grid container className={classes.genericContainer} style={{flexDirection: 'column'}}>
                   <Link href={'/forgotPassword'}><a color="primary" style={{textDecoration: 'none', color: '#2FBCD3'}}>Mot
                     de passe oublié ?</a></Link>
+                  <Link href={'/'}><a color="primary" style={{textDecoration: 'none', color: '#2FBCD3'}}>Revenir à la page d'accueil</a></Link>
                 </Grid>
               </Grid>
             </Grid>
