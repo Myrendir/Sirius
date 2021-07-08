@@ -4,6 +4,9 @@ import {snackBarError} from "../../utils/notifications";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
+import moment from "moment";
+
+moment.locale('fr');
 const {BASE_URL} = require('../../utils/conf');
 
 const {setAuthToken, setAxiosAuthentication} = require('../../utils/authentication');
@@ -18,33 +21,34 @@ class UnofficialChat extends React.Component {
   }
 
 
-
   componentDidMount() {
 
-     const refreshChat = () => {
-       const {messages} = this.state;
-       setInterval(function () {
+    const refreshChat = () => {
+      const {messages} = this.state;
+      setInterval(() => {
         let lastMessage = messages[messages.length - 1];
-        let objectToSend = {date: lastMessage.prettyCreatedAt};
+        let objectToSend = {date: lastMessage.created_at};
         axios.post(`${BASE_URL}/api/chat/unofficial/lastmessage/since`, objectToSend)
           .then(res => {
-            console.log('res' +res.data)
-            this.setState({messages: messages.push(res.data)})
+            res.data.forEach((data) => {
+              if (Object.keys(data).length != 0) {
+                data.prettyCreatedAt = moment(data.created_at).format('LLL')
+                this.setState({messages: messages.concat(data)})
+              }
+            })
+
           })
           .catch(err => console.log(err))
-      }, 15000)
+      }, 5000)
     };
 
     setAxiosAuthentication();
     axios.get(`${BASE_URL}/api/chat/unofficial/lastmessage`)
       .then(res => {
-        console.log(res);
         if (res.data.length != 0) {
           res.data.forEach((message) => {
-            let date = new Date(message.created_at);
-            message.prettyCreatedAt =
-              [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') + ' ' +
-              [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
+            message.prettyCreatedAt = moment(message.created_at).format('LLL')
+
           });
           this.setState({messages: res.data.reverse()});
           refreshChat();
@@ -55,8 +59,7 @@ class UnofficialChat extends React.Component {
         console.log(err);
         this.setState({messages: []});
       });
-    console.log(this.state)
-    // refreshChat();
+
   }
 
   onSend = e => {
@@ -68,12 +71,8 @@ class UnofficialChat extends React.Component {
 
     axios.post(`${BASE_URL}/api/chat/unofficial/send`, JSON.stringify(messageToSend))
       .then(res => {
-        let now = new Date();
-        messageToSend.created_at = now.toISOString().slice(0, -5) + "+02:00";
-        let date = new Date(messageToSend.created_at);
-        messageToSend.prettyCreatedAt =
-          [date.getMonth() + 1, date.getDate(), date.getFullYear()].join('/') + ' ' +
-          [date.getHours(), date.getMinutes(), date.getSeconds()].join(':');
+        messageToSend.prettyCreatedAt = moment(messageToSend.created_at).format('LLL')
+
         messageToSend.id = this.state.messages[this.state.messages.length - 1].id + 1;
         this.setState({messages: this.state.messages.concat(messageToSend)})
         this.render();
