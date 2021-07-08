@@ -4,10 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import NavBar from "../Layout/NavBar/NavBar";
 import ContactTable from "../components/ContactTable/ContactTable";
 
-class ContactBook extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+class contactBook extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
 
     render() {
         return (
@@ -29,4 +30,4 @@ class ContactBook extends React.Component {
     }
 }
 
-export default ContactBook
+export default (contactBook)

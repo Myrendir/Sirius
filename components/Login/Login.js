@@ -1,5 +1,6 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
+import jwtDecode from 'jwt-decode';
 import styles from '../../styles/components/Login/Login';
 import axios from 'axios';
 import {snackBarError} from "../../utils/notifications";
@@ -29,15 +30,19 @@ class Login extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const user = {
-      email: this.state.email,
+      username: this.state.email,
       password: this.state.password,
     }
 
-    axios.post('localhost:8000/api/login', user)
+    console.log(user);
+
+    axios.post('http://localhost:8000/api/login_check', user)
       .then(res => {
-        setAuthToken()
-        setAxiosAuthentication()
-        this.props.login();
+        console.log(res);
+        let decoded = jwtDecode(res.data.token);
+        console.log(decoded);
+        setAuthToken(res.data.token, this.state.email);
+        setAxiosAuthentication();
       })
       .catch(err => {
         console.error(err);
@@ -55,6 +60,13 @@ class Login extends React.Component {
   handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  onChangeEmail = (e) => {
+    this.setState({email: e.target.value});
+  }
+  onChangePassword = (e) => {
+    this.setState({password: e.target.value});
+  }
 
   render() {
     const {classes, callRegister, id} = this.props;
@@ -79,8 +91,8 @@ class Login extends React.Component {
                       label="Email"
                       placeholder="Email"
                       style={{width: '100%', marginTop: 16, marginBottom: 8}}
+                      onChange={this.onChangeEmail}
                       name="email"
-                      onChange={this.onChange}
                     />
                     <em>{errors.email}</em>
                   </Grid>
@@ -99,8 +111,7 @@ class Login extends React.Component {
                       style={{width: '100%', marginTop: 16, marginBottom: 8}}
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      value={password}
-                      onChange={this.onChange}
+                      onChange={this.onChangePassword}
                       error={errors.password}
                       endAdornment={
                         <InputAdornment position="end">
