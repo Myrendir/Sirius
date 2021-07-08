@@ -259,14 +259,14 @@ h1 {
     padding: 20px;
 }
 
-.apero a {
-    width: 100%;
-    padding: 10px;
-    background-color: #03989E;
-    border-radius: 50px;
-    color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
+/*.apero a {*/
+/*    width: 100%;*/
+/*    padding: 10px;*/
+/*    background-color: #03989E;*/
+/*    border-radius: 50px;*/
+/*    color: #fff;*/
+/*    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);*/
+/*}*/
 
 .idees {
     background: linear-gradient(0deg, rgba(3, 152, 158, 1) 0%, rgba(255, 255, 255, 0) 50%),
@@ -571,7 +571,7 @@ hr {
     transition: .4s ease-out all;
     background-color: #f5f5f5;
     overflow: hidden;
-    transform: translateY(89%);
+    transform: translateY(75%);
     width: 25%;
     position: fixed;
     bottom: 0;
@@ -585,7 +585,7 @@ hr {
     transition: .4s ease-out all;
     background-color: #f5f5f5;
     overflow: hidden;
-    transform: translateY(89%);
+    transform: translateY(75%);
     width: 25%;
     position: fixed;
     bottom: 0;
@@ -621,4 +621,16 @@ hr {
     width: 50%;
     transition: .2s ease-out all;
     z-index: 9999;
+}
+
+@media screen and (max-width: 600px) {
+    .head-chat svg {
+        display: none;
+    }
+}
+
+.arrow {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
 }
