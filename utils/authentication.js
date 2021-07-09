@@ -14,15 +14,11 @@ const setAuthToken = (token, userEmail, decodedToken) => {
 }
 
 const getAuthToken = () => {
-  if (typeof localStorage == 'undefined') {
-    return null
+  let isAuth = false;
+  if (localStorage.getItem('token')) {
+    isAuth = true;
   }
-  const token = localStorage.getItem('token')
-  if (!token) {
-    return null
-  }
-
-  return jwt.decode(token.split(' ')[1])
+  return isAuth;
 }
 
 const setAxiosAuthentication = () => {

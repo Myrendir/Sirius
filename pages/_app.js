@@ -11,6 +11,7 @@ class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
+
   }
 
   render() {

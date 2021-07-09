@@ -7,8 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import styles from '../../styles/components/Register/Register';
-import withStyles from "@material-ui/core/styles/withStyles";
+import {withStyles} from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import Select from "@material-ui/core/Select";
@@ -40,6 +39,84 @@ const checkPass2 = (pass1, pass2) => {
     check: false,
   };
 };
+
+const styles = theme => ({
+  fullContainer: {
+    display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      height: '100vh',
+      justifyContent: 'center',
+      backgroundColor: '#03989E',
+      position:'relative'
+  },
+  loginContainer: {
+    display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  cardContant: {
+    flexDirection: 'column',
+  },
+  linkText: {
+    textDecoration: 'none',
+      color: 'black',
+      fontSize: 12,
+  },
+
+  hrStyle: {
+    borderWidth: 0.5,
+      color: 'lightgray',
+  },
+  margin: {
+    width: '100%',
+  },
+  genericContainer: {
+    width: '100%',
+      justifyContent: 'center',
+  },
+  colorIcon: {
+    color: 'rgba(84,89,95,0.95)',
+  },
+  widthTextField: {
+    width: '70%',
+
+  },
+  newContainer: {
+    padding: '5%',
+      backgroundColor: '#fff',
+      width:'60%',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform:'translate(-50%,-50%)',
+      boxShadow: '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
+  },
+  containerDialogContent: {
+    width: '100%',
+      height: '100%',
+      marginBottom: '1.6rem',
+      marginTop: '-1.6rem',
+  },
+  titleRegister: {
+    textAlign: 'center',
+      margin: '0px auto 1.6rem',
+      fontSize: '1.6rem',
+      color: 'rgba(84,89,95,0.95)',
+      letterSpacing: -1,
+      fontWeight: 'bold',
+  },
+  flexContainerPics: {
+    display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+  },
+  formControl: {
+    width: '100%'
+  }
+
+});
 
 class Register extends React.Component {
   constructor(props) {
@@ -164,118 +241,167 @@ class Register extends React.Component {
     const {classes} = this.props;
     const {showPassword, companyActivity} = this.state;
     return (
-      <Grid>
+      <Grid className={classes.fullContainer}
+      style={{justifyContent: 'center'}}>
+        <Grid style={{width: '50%'}}>
+          <Grid className={classes.newContainer}>
+            <Grid>
+              <Grid item className={classes.widthTextField}>
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={this.onChangeUsername}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
 
-        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="firstname"
+                  placeholder="Prénom"
+                  onChange={this.onChangefirstname}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
 
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={this.onChangeUsername}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="firstname"
-            placeholder="Prénom"
-            onChange={this.onChangefirstname}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="lastname"
-            placeholder="Nom"
-            onChange={this.onChangeName}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={this.onChangeEmail}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="company"
-            placeholder="Company"
-            onChange={this.onChangeCompany}
-          />
-          <InputLabel id="demo-simple-select-label">Domaine d'activité</InputLabel>
-          <Select
-            value={companyActivity}
-            onChange={this.handleChange}
-          >
-            <MenuItem value={'Architecture'}>Architecture</MenuItem>
-            <MenuItem value={'Informatics'}>Informatique</MenuItem>
-            <MenuItem value={'Marketing'}>Marketing</MenuItem>
-          </Select>
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="lastname"
+                  placeholder="Nom"
+                  onChange={this.onChangeName}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
 
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="phoneNumber"
-            placeholder="Téléphone"
-            onChange={this.onChangePhone}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            type="text"
-            name="beverage"
-            placeholder="Boisson"
-            onChange={this.onChangeBeverage}
-          />
-          <TextField
-            id="standard-with-placeholder"
-            label="Mot de passe"
-            placeholder="Mot de passe"
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.onChange}
-            onKeyUp={this.onChange2}
-            error={this.state.status1.error}
-            helperText={this.state.status1.error}
-          />
-        </Grid>
-        <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-          <TextField
-            id="standard-with-placeholder"
-            label="Répéter le mot de passe"
-            placeholder="Mot de passe"
-            type={showPassword ? "text" : "password"}
-            name="password2"
-            value={this.state.password2}
-            onChange={this.onChange}
-            onKeyUp={this.onChange2}
-            error={this.state.status2.error}
-            helperText={this.state.status2.error}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    tabIndex="-1"
-                    aria-label="toggle password visibility"
-                    onClick={this.handleClickShowPassword}
-                    onMouseDown={this.handleMouseDownPassword}
-                  >
-                    {showPassword ? <Visibility/> : <VisibilityOff/>}
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-          />
-        </Grid>
-        <Grid item xl={12} lg={12} md={12} sm={12} xs={12} style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <Button
-            variant="contained"
-            onClick={this.onSubmit}
-            classes={{root: classes.saveButton}}
-          >
-            Valider
-          </Button>
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.onChangeEmail}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="company"
+                  placeholder="Company"
+                  onChange={this.onChangeCompany}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <InputLabel id="demo-simple-select-label">Domaine d'activité</InputLabel>
+                <Select
+                  value={companyActivity}
+                  onChange={this.handleChange}
+                  style={{
+                    width: '20%'
+                  }}
+                >
+                  <MenuItem value={'Architecture'}>Architecture</MenuItem>
+                  <MenuItem value={'Informatics'}>Informatique</MenuItem>
+                  <MenuItem value={'Marketing'}>Marketing</MenuItem>
+                </Select>
+              </Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Téléphone"
+                  onChange={this.onChangePhone}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <TextField
+                  id="standard-with-placeholder"
+                  type="text"
+                  name="beverage"
+                  placeholder="Boisson"
+                  onChange={this.onChangeBeverage}
+                />
+              </Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <TextField
+                  id="standard-with-placeholder"
+                  label="Mot de passe"
+                  placeholder="Mot de passe"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  onKeyUp={this.onChange2}
+                  error={this.state.status1.error}
+                  helperText={this.state.status1.error}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          tabIndex="-1"
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowPassword}
+                          onMouseDown={this.handleMouseDownPassword}
+                        >
+                          {showPassword ? <Visibility/> : <VisibilityOff/>}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid>
+              <Grid item className={classes.widthTextField}>
+
+                <TextField
+                  id="standard-with-placeholder"
+                  label="Répéter le mot de passe"
+                  placeholder="Mot de passe"
+                  type={showPassword ? "text" : "password"}
+                  name="password2"
+                  value={this.state.password2}
+                  onChange={this.onChange}
+                  onKeyUp={this.onChange2}
+                  error={this.state.status2.error}
+                  helperText={this.state.status2.error}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          tabIndex="-1"
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowPassword}
+                          onMouseDown={this.handleMouseDownPassword}
+                        >
+                          {showPassword ? <Visibility/> : <VisibilityOff/>}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <Grid style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <Button
+                variant="contained"
+                onClick={this.onSubmit}
+                color={"primary"}
+                classes={{root: classes.saveButton}}
+              >
+                Valider
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
 
