@@ -15,6 +15,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 
+import * as router from "next";
+
 const checkPasswordFormat = pass => (pass.match('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})'));
 const {BASE_URL} = require('../../utils/conf');
 
@@ -53,10 +55,18 @@ class Register extends React.Component {
     }
   }
 
+
+  static getInitialProps({query: {token}}) {
+    return {token: token}
+  }
+
+
   componentDidMount() {
+    const path = window.location.pathname;
     const token = this.props.token;
     this.setState({
-      token: token
+      token: token,
+      path: path,
     })
   }
 
@@ -106,14 +116,31 @@ class Register extends React.Component {
       phoneNumber: e.target.value
     })
   }
+  onChangeBeverage = e => {
+    this.setState({
+      beverage: e.target.value
+    })
+  }
 
   onSubmit = e => {
+    const {path} = this.state;
     e.preventDefault();
     const data = {
-      password: this.state.password,
-      token: this.state.token,
+      password: {
+        first: this.state.password,
+        second: this.state.password2,
+      },
+      username: this.state.username,
+      firstName: this.state.firstname,
+      lastName: this.state.name,
+      company: this.state.company,
+      companyActivity: this.state.companyActivity,
+      beverage: this.state.beverage,
+      phoneNumber: this.state.phoneNumber,
+      email: this.state.email,
     };
-    axios.post(`${BASE_URL}/api/register`)
+
+    axios.post(`${BASE_URL}${path}`, data)
       .then(res => {
         const user = res.data;
         snackBarSuccess('Informations modifiées avec succès');
@@ -133,6 +160,7 @@ class Register extends React.Component {
   };
 
   render() {
+
     const {classes} = this.props;
     const {showPassword, companyActivity} = this.state;
     return (
@@ -197,7 +225,7 @@ class Register extends React.Component {
             type="text"
             name="beverage"
             placeholder="Boisson"
-            onChange={this.onChangePhone}
+            onChange={this.onChangeBeverage}
           />
           <TextField
             id="standard-with-placeholder"

@@ -13,13 +13,19 @@ import Button from "@material-ui/core/Button";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
-
+import {
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import MuiPickersUtilsProvider from "@material-ui/pickers/MuiPickersUtilsProvider";
 class Home extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      selectedDate: new Date(),
+      setSelectedDate: new Date(),
     }
   }
 
@@ -32,10 +38,14 @@ class Home extends React.Component {
     this.setState({open: false})
   };
 
+  handleDateChange = (date) => {
+    this.state.setSelectedDate(date);
+  };
 
   render() {
-    const {open} = this.state;
+    const {open, selectedDate, setSelectedDate} = this.state;
     return (
+
       <Grid>
         {/* <LoginVerification /> */}
         <Helmet>
@@ -111,7 +121,7 @@ class Home extends React.Component {
                   <div className="align-ctr btn-apero">
                     <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>Urgence Apéro</Button>
                     <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                      <DialogTitle id="form-dialog-title">Alerte apéro  </DialogTitle>
+                      <DialogTitle id="form-dialog-title">Alerte apéro </DialogTitle>
                       <DialogContent>
                         <DialogContentText>
                           Lorem blabla blabla boir alcool
@@ -124,13 +134,30 @@ class Home extends React.Component {
                           type="text"
                           fullWidth
                         />
+                        {/*<MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+                        {/*  <Grid container justifyContent="space-around">*/}
+                        {/*    <KeyboardDatePicker*/}
+                        {/*      disableToolbar*/}
+                        {/*      variant="inline"*/}
+                        {/*      format="MM/dd/yyyy"*/}
+                        {/*      margin="normal"*/}
+                        {/*      id="date-picker-inline"*/}
+                        {/*      label="Date picker inline"*/}
+                        {/*      value={selectedDate}*/}
+                        {/*      onChange={this.handleDateChange}*/}
+                        {/*      KeyboardButtonProps={{*/}
+                        {/*        'aria-label': 'change date',*/}
+                        {/*      }}*/}
+                        {/*    />*/}
+                        {/*  </Grid>*/}
+                        {/*</MuiPickersUtilsProvider>*/}
                       </DialogContent>
                       <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                           Annuler
                         </Button>
                         <Button onClick={this.handleClose} color="primary">
-                          M'inscrire
+                          Apéro !
                         </Button>
                       </DialogActions>
                     </Dialog>
